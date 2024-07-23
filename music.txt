@@ -1,0 +1,45 @@
+Récupérer tous les albums
+select * from albums;
+
+Récupérer tous les albums dont le titre contient "Great" (indice)
+select * from albums where title Like "%Great%";
+
+Donner le nombre total d'albums contenus dans la base (sans regarder les id bien sûr)
+select count(*) from albums;
+
+Supprimer tous les albums dont le nom contient "music"
+delete from albums where title like "%music%";
+
+Récupérer tous les albums écrits par AC/DC
+select * from albums, artists where albums.ArtistId = artists.ArtistId and artists.Name = "AC/DC";
+
+Récupérer tous les titres des albums de AC/DC
+SELECT albums.title FROM albums JOIN artists ON albums.ArtistId = artists.ArtistId WHERE artists.Name = 'AC/DC';
+
+Récupérer la liste des titres de l'album "Let There Be Rock"
+SELECT tracks.Name FROM tracks
+JOIN albums ON tracks.AlbumId = albums.AlbumId
+WHERE albums.title = 'Let There Be Rock';
+
+Afficher le prix de cet album ainsi que sa durée totale
+SELECT SUM(tracks.UnitPrice), SUM(tracks.Milliseconds) FROM albums
+JOIN tracks ON tracks.AlbumId = albums.AlbumId
+WHERE albums.title = 'Let There Be Rock';
+
+Afficher le coût de l'intégralité de la discographie de "Deep Purple"
+
+Créer l'album de ton artiste favori en base, en renseignant correctement les trois tables albums, artists et tracks
+-- Insérer l'artiste
+INSERT INTO artists (name) VALUES ('John Doe');
+-- Récupérer l'ID de l'artiste inséré
+SELECT id FROM artists WHERE name = 'John Doe';
+-- Supposons que l'ID de l'artiste est 101 (ceci serait déterminé dynamiquement normalement)
+-- Insérer l'album
+INSERT INTO albums (title, artist_id, price) VALUES ('Awesome Album', 101, 9.99);
+-- Récupérer l'ID de l'album inséré
+SELECT id FROM albums WHERE title = 'Awesome Album' AND artist_id = 101;
+-- Supposons que l'ID de l'album est 202 (ceci serait déterminé dynamiquement normalement)
+-- Insérer les tracks
+INSERT INTO tracks (title, album_id, duration) VALUES ('Track 1', 202, 180);
+INSERT INTO tracks (title, album_id, duration) VALUES ('Track 2', 202, 200);
+

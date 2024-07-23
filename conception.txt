@@ -1,0 +1,19 @@
+# MOOCademy
+Course(id, title, description)
+Lesson(id, title, body, course_id)
+
+# The Pinterest
+User(id, username, email)
+Pin(id, url, user_id)
+Comment(id, content, pin_id, user_id)
+
+# The News
+User(id, username, email)
+Link(id, url, title, user_id)
+Comment(id, content, link_id, user_id, parent_comment_id)
+
+# The Class
+Student(id, name, email)
+Course(id, title, description)
+Enrollment(student_id, course_id)
+
